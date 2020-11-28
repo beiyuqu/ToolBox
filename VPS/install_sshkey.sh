@@ -46,7 +46,10 @@ sed -i "/PubkeyAuthentication yes/c PubkeyAuthentication yes" sshd_config
 # 端口修改
 sed -i "/Port 22/c Port $Port" sshd_config
 
-/etc/init.d/ssh restart
+service sshd restart
+service ssh restart
+systemctl restart sshd
+systemctl restart ssh
 
 cd $PATH_CURR
 rm -rf $0
