@@ -4,6 +4,8 @@
 # 自动配置SSH公钥登录，禁用密码登录
 # 时间: 2020年11月28日15点13分
 
+USERNAME=beiyuqu
+PATH_CURR=`pwd`
 
 if apt --help >/dev/null 2>&1; then
     COMMOD='apt'
@@ -13,8 +15,6 @@ else
     echo '仅支持apt、yum安装软件'
     exit 1
 fi
-
-current_path=`pwd`
 
 # 依赖软件
 COMMOD install curl -y
@@ -28,7 +28,7 @@ echo '======================================
 cd ~
 [ -d .ssh ] || mkdir .ssh 
 cd .ssh
-curl https://github.com/$1.keys > authorized_keys
+curl https://github.com/$USERNAME.keys > authorized_keys
 chmod 700 authorized_keys
 chmod 600 ../.ssh
 
@@ -46,5 +46,5 @@ service ssh restart
 systemctl restart sshd
 systemctl restart ssh
 
-cd $current_path
+cd $PATH_CURR
 rm -rf $0
