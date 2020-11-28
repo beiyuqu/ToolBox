@@ -28,13 +28,15 @@ echo '======================================
 cd ~
 [ -d .ssh ] || mkdir .ssh 
 cd .ssh
-curl https://github.com/$1.keys > login_keys
-chmod 700 login_keys
+curl https://github.com/$1.keys > authorized_keys
+chmod 700 authorized_keys
 chmod 600 ../.ssh
 
 cd /etc/ssh/
+# 启用密码验证
 sed -i "/PasswordAuthentication no/c PasswordAuthentication no" sshd_config
 sed -i "/RSAAuthentication no/c RSAAuthentication yes" sshd_config
+# 公钥验证
 sed -i "/PubkeyAuthentication no/c PubkeyAuthentication yes" sshd_config
 sed -i "/PasswordAuthentication yes/c PasswordAuthentication no" sshd_config
 sed -i "/RSAAuthentication yes/c RSAAuthentication yes" sshd_config
