@@ -13,7 +13,7 @@ PATH_CURR=`pwd`
 
 
 if apt --help >/dev/null 2>&1; then
-    COMMOD='apt'
+    COMMOD='apt-get'
 elif yum --help >/dev/null 2>&1; then
     COMMOD='yum'
 else
