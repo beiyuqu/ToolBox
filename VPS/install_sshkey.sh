@@ -44,7 +44,7 @@ sed -i "/PasswordAuthentication yes/c PasswordAuthentication no" sshd_config
 sed -i "/RSAAuthentication yes/c RSAAuthentication yes" sshd_config
 sed -i "/PubkeyAuthentication yes/c PubkeyAuthentication yes" sshd_config
 # 端口修改
-sed -i "/Port 22/c Port $Port" sshd_config
+sed -i "/Port 22/c Port `$Port`" sshd_config
 
 service sshd restart
 service ssh restart
